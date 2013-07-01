@@ -3,35 +3,152 @@
 <head>
  <script type="text/javascript">
 $(document).ready(function() {
-    var chart1 = new Highcharts.Chart({
-        chart: {
-            renderTo: 'container',
-            type: 'bar'
-        },
-        title: {
-            text: 'Fruit Consumption'
-        },
-        xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
-        },
-        yAxis: {
-            title: {
-                text: 'Fruit eaten'
-            }
-        },
-        series: [{
-            name: 'Jane',
-            data: [1, 0, 4]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
-        }]
-    });
+
+  Highcharts.theme = {
+   colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+   chart: {
+      backgroundColor: {
+         linearGradient: [0, 0, 500, 500],
+         stops: [
+            [0, 'rgb(255, 255, 255)'],
+            [1, 'rgb(240, 240, 255)']
+         ]
+      }
+,
+      borderWidth: 2,
+      plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+      plotShadow: true,
+      plotBorderWidth: 1
+   },
+   title: {
+      style: { 
+         color: '#000',
+         font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+      }
+   },
+   subtitle: {
+      style: { 
+         color: '#666666',
+         font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
+      }
+   },
+   xAxis: {
+      gridLineWidth: 1,
+      lineColor: '#000',
+      tickColor: '#000',
+      labels: {
+         style: {
+            color: '#000',
+            font: '11px Trebuchet MS, Verdana, sans-serif'
+         }
+      },
+      title: {
+         style: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: '12px',
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+
+         }            
+      }
+   },
+   yAxis: {
+      minorTickInterval: 'auto',
+      lineColor: '#000',
+      lineWidth: 1,
+      tickWidth: 1,
+      tickColor: '#000',
+      labels: {
+         style: {
+            color: '#000',
+            font: '11px Trebuchet MS, Verdana, sans-serif'
+         }
+      },
+      title: {
+         style: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: '12px',
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+         }            
+      }
+   },
+   legend: {
+      itemStyle: {         
+         font: '9pt Trebuchet MS, Verdana, sans-serif',
+         color: 'black'
+
+      },
+      itemHoverStyle: {
+         color: '#039'
+      },
+      itemHiddenStyle: {
+         color: 'gray'
+      }
+   },
+   labels: {
+      style: {
+         color: '#99b'
+      }
+   }
+};
+  
+// Apply the theme
+var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+
+
+new Highcharts.Chart({
+chart: {
+renderTo: "user_chart",
+defaultSeriesType: 'line',
+},
+title: {
+text: "Highchart Demo"
+},
+xAxis: {
+type: "datetime"
+},
+yAxis: {
+title: {
+text: "book_name"
+},
+plotLines: [{
+value: 0,
+width: 1,
+color: '#808080'
+}]
+},
+tooltip: {  
+formatter: function () {  
+return Highcharts.dateFormat("%d %b %Y", this.x); 
+}  
+},
+legend: {
+layout: 'vertical',
+align: 'right',
+verticalAlign: 'top',
+x: -10,
+y: 100,
+borderWidth: 0
+},
+
+series: [{
+            name: 'users',
+            data: [1,2,3]
+}]
+
+});
 });
 </script>
 </head>
 <body>
-<div id="container" style="width:100%; height:400px;"></div>
+<table>
+<tr>
+<td><div id="user_chart" style="width:760px; height:300px;"></div></td>
+</tr>
+</table>
+
+
 <table>
   <thead>
     <tr>
@@ -49,7 +166,7 @@ $(document).ready(function() {
       <tr>
         <td><%= user.username %></td>
         <td><%= user.book_name %></td>
-        <td><%= user.purchased %></td>
+        <td><%= user.purchased.to_date %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
