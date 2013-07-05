@@ -2,115 +2,116 @@
 <h1>HighChart Demo</h1>
 <head>
  <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function() {
 
-  Highcharts.theme = {
-   colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
-   chart: {
-      backgroundColor: {
-         linearGradient: [0, 0, 500, 500],
-         stops: [
-            [0, 'rgb(255, 255, 255)'],
-            [1, 'rgb(240, 240, 255)']
-         ]
-      }
-,
-      borderWidth: 2,
-      plotBackgroundColor: 'rgba(255, 255, 255, .9)',
-      plotShadow: true,
-      plotBorderWidth: 1
-   },
-   title: {
-      style: { 
-         color: '#000',
-         font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
-      }
-   },
-   subtitle: {
-      style: { 
-         color: '#666666',
-         font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
-      }
-   },
-   xAxis: {
-      gridLineWidth: 1,
-      lineColor: '#000',
-      tickColor: '#000',
-      labels: {
-         style: {
-            color: '#000',
-            font: '11px Trebuchet MS, Verdana, sans-serif'
-         }
-      },
-      title: {
-         style: {
-            color: '#333',
-            fontWeight: 'bold',
-            fontSize: '12px',
-            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+    Highcharts.theme = {
+     colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+     chart: {
+        backgroundColor: {
+           linearGradient: [0, 0, 500, 500],
+           stops: [
+              [0, 'rgb(255, 255, 255)'],
+              [1, 'rgb(240, 240, 255)']
+           ]
+        }
+  ,
+        borderWidth: 2,
+        plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+        plotShadow: true,
+        plotBorderWidth: 1
+     },
+     title: {
+        style: { 
+           color: '#000',
+           font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+        }
+     },
+     subtitle: {
+        style: { 
+           color: '#666666',
+           font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
+        }
+     },
+     xAxis: {
+        gridLineWidth: 1,
+        lineColor: '#000',
+        tickColor: '#000',
+        labels: {
+           style: {
+              color: '#000',
+              font: '11px Trebuchet MS, Verdana, sans-serif'
+           }
+        },
+        title: {
+           style: {
+              color: '#333',
+              fontWeight: 'bold',
+              fontSize: '12px',
+              fontFamily: 'Trebuchet MS, Verdana, sans-serif'
 
-         }            
-      }
-   },
-   yAxis: {
-      minorTickInterval: 'auto',
-      lineColor: '#000',
-      lineWidth: 1,
-      tickWidth: 1,
-      tickColor: '#000',
-      labels: {
-         style: {
-            color: '#000',
-            font: '11px Trebuchet MS, Verdana, sans-serif'
-         }
-      },
-      title: {
-         style: {
-            color: '#333',
-            fontWeight: 'bold',
-            fontSize: '12px',
-            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
-         }            
-      }
-   },
-   legend: {
-      itemStyle: {         
-         font: '9pt Trebuchet MS, Verdana, sans-serif',
-         color: 'black'
+           }            
+        }
+     },
+     yAxis: {
+        minorTickInterval: 'auto',
+        lineColor: '#000',
+        lineWidth: 1,
+        tickWidth: 1,
+        tickColor: '#000',
+        labels: {
+           style: {
+              color: '#000',
+              font: '11px Trebuchet MS, Verdana, sans-serif'
+           }
+        },
+        title: {
+           style: {
+              color: '#333',
+              fontWeight: 'bold',
+              fontSize: '12px',
+              fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+           }            
+        }
+     },
+     legend: {
+        itemStyle: {         
+           font: '9pt Trebuchet MS, Verdana, sans-serif',
+           color: 'black'
 
-      },
-      itemHoverStyle: {
-         color: '#039'
-      },
-      itemHiddenStyle: {
-         color: 'gray'
-      }
-   },
-   labels: {
-      style: {
-         color: '#99b'
-      }
-   }
-};
-  
-// Apply the theme
-var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+        },
+        itemHoverStyle: {
+           color: '#039'
+        },
+        itemHiddenStyle: {
+           color: 'gray'
+        }
+     },
+     labels: {
+        style: {
+           color: '#99b'
+        }
+     }
+  };
+    
+  // Apply the theme
+  var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 
 
-new Highcharts.Chart({
-chart: {
-renderTo: "user_chart",
-defaultSeriesType: 'line',
-},
-title: {
-text: "Highchart Demo"
-},
-xAxis: {
-type: "datetime"
-},
-yAxis: {
-title: {
-text: "book_name"
+  new Highcharts.Chart({
+  chart: {
+  renderTo: "user_chart",
+  defaultSeriesType: 'line',
+  },
+  title: {
+  text: "Highchart Demo"
+  },
+  xAxis: {
+   //categories: <%= User.pluck(:username) %>
+   categories: ['User0','User1', 'User2', 'User3','User4', 'User5', 'User6','User7', 'User8', 'User9']
+  },
+ yAxis: {
+  title: {
+text: "count of books"
 },
 plotLines: [{
 value: 0,
@@ -118,27 +119,27 @@ width: 1,
 color: '#808080'
 }]
 },
-tooltip: {  
-formatter: function () {  
-return Highcharts.dateFormat("%d %b %Y", this.x); 
-}  
-},
-legend: {
-layout: 'vertical',
-align: 'right',
-verticalAlign: 'top',
-x: -10,
-y: 100,
-borderWidth: 0
-},
+  tooltip: {  
+  formatter: function () {  
+  return this.x+'=> '+'Books read:'+this.y; 
+  }  
+  },
+  legend: {
+  layout: 'vertical',
+  align: 'right',
+  verticalAlign: 'top',
+  x: -10,
+  y: 100,
+  borderWidth: 0
+  },
 
-series: [{
-            name: 'users',
-            data: [1,2,3]
-}]
+  series: [{
+              name: 'count of books per user',
+              data: <%= User.pluck(:book_count) %>
+  }]
 
-});
-});
+  });
+  });
 </script>
 </head>
 <body>
@@ -155,6 +156,7 @@ series: [{
       <th>Username</th>
       <th>Book name</th>
       <th>Purchased</th>
+      <th>Book Count</th>
       <th></th>
       <th></th>
       <th></th>
@@ -167,6 +169,7 @@ series: [{
         <td><%= user.username %></td>
         <td><%= user.book_name %></td>
         <td><%= user.purchased.to_date %></td>
+        <td><%= user.book_count %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

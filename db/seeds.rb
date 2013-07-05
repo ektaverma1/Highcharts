@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.destroy_all
-10.times{ |i| User.create(:username => "User-#{i}",:book_name=> "Book-#{i}",:purchased=>Time.now.to_date + i.day)}
+10.times{ |i| User.create(:username => "User-#{i}",:book_name=> "Book-#{i}",:purchased=>Time.now.to_date + i.day,:book_count =>  1 + rand(i))}
