@@ -1,4 +1,5 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,23 +12,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
+  <div class="control-group">
+    <%= f.label :username, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :username, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :book_name %><br>
-    <%= f.text_field :book_name %>
+  <div class="control-group">
+    <%= f.label :book_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :book_name, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :purchased %><br>
-    <%= f.datetime_select :purchased %>
+
+  <div class="control-group">
+    <%= f.label :username, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :username, :class => 'datetime_select' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :book_count %><br>
-    <%= f.text_field :book_count %>
+
+  <div class="control-group">
+    <%= f.label :book_count, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :book_count, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', users_path, :class => 'btn' %>
   </div>
+
+</fieldset>
 <% end %>
